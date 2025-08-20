@@ -6,14 +6,10 @@ import { GroupedStars } from "../icons/grouped-stars";
 import Image from "next/image";
 import Button from "../ui/button";
 
-
-
-
 const Hero = () => {
   return (
     <section className="w-full bg-primary-light min-h-screen relative overflow-hidden">
       <Navbar />
-
       <ChapterBanner
         chapterNumber="Chapter 1"
         chapterTitle="THE INTRODUCTION"
