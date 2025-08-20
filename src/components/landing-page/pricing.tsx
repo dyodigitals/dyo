@@ -21,7 +21,7 @@ const Pricing = () => {
         "Typography selection & usage guide",
         "Social media profile & cover designs (optional add-on)"
       ],
-      price: "Starting from $ 800 USD",
+      price: "Starting from $ 999 USD",
       icon: <BroadStar className="text-accent-primary" />
     },
     "web-design": {
@@ -34,7 +34,7 @@ const Pricing = () => {
         "Basic SEO setup",
         "Content management system integration"
       ],
-      price: "Starting from $ 1,500 USD",
+      price: "Starting from $ 2499 USD",
       icon: <ShinyStar className="text-primary-dark scale-80 " />
     },
     "branding-web": {
@@ -48,7 +48,7 @@ const Pricing = () => {
         "Business card & stationary design",
         "3 months of support included"
       ],
-      price: "Starting from $ 2,800 USD",
+      price: "Starting from $ 2999 USD",
       icon: <FanIcon className="text-accent-primary" />
     }
   };

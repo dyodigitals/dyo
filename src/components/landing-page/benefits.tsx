@@ -12,6 +12,19 @@ import { useSplitTextMask } from "@/hooks/useSplitTextMask";
 const Benefits = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(0);
   const [scallop, setScallop] = useState({ rx: 1.1, ry: 15 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Split text animation matching Framer Motion example
   const { textRef: headerTextRef } = useSplitTextMask({
@@ -105,7 +118,7 @@ const Benefits = () => {
             </h3>
 
             <p 
-              ref={headerTextRef}
+              ref={isMobile ? undefined : headerTextRef}
               className="text-body-lg font-aileron text-secondary-light mb-6 max-w-2xl leading-relaxed tracking-tight"
             >
               We help you turn your vision into a distinctive digital identity —
@@ -118,7 +131,7 @@ const Benefits = () => {
               textColor="#292929"
               hoverTextColor="#FFFDE4"
               borderColor="#888888"
-              className="font-aileron font-semibold text-body bg-primary-light"
+              className="font-aileron font-semibold text-body bg-primary-light px-8 py-2"
               showArrow={false}
               href="#services"
             >

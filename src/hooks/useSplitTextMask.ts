@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,6 +26,19 @@ export const useSplitTextMask = (options: SplitTextMaskOptions = {}) => {
   const textRef = useRef<HTMLParagraphElement>(null);
   const splitTextRef = useRef<SplitText | null>(null);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const {
     trigger = null,
@@ -42,7 +55,7 @@ export const useSplitTextMask = (options: SplitTextMaskOptions = {}) => {
   } = options;
 
   useGSAP(() => {
-    if (!textRef.current) return;
+    if (!textRef.current || isMobile) return; // Skip animation on mobile
 
     // Add a small delay to ensure DOM is ready, especially on mobile
     const initAnimation = () => {
@@ -130,7 +143,7 @@ export const useSplitTextMask = (options: SplitTextMaskOptions = {}) => {
         splitTextRef.current.revert();
       }
     };
-  }, [trigger, start, end, stagger, duration, ease, splitType, direction, maskType, onComplete, onStart]);
+  }, [trigger, start, end, stagger, duration, ease, splitType, direction, maskType, onComplete, onStart, isMobile]);
 
   return { textRef };
 };

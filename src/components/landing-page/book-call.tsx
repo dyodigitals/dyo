@@ -33,7 +33,7 @@ const BookCall = () => {
 
       {/* Content Overlay */}
       <div className="relative z-10 px-4 md:px-8 py-20">
-        <div className="max-w-7xl mx-auto pt-10 ring-[0.5px] ring-primary-light/50 bg-primary-dark/40 backdrop-blur-md rounded-lg">
+        <div className="max-w-7xl mx-auto lg:pt-10 lg:ring-[0.5px] lg:ring-primary-light/50 bg-primary-dark/40 backdrop-blur-md rounded-lg">
           <Calendar />
         </div>
       </div>

@@ -12,7 +12,6 @@ export const InfiniteMovingCards = ({
   speed = "fast",
   pauseOnHover = true,
   className,
-  
 }: {
   items: {
     quote: string;
@@ -20,7 +19,7 @@ export const InfiniteMovingCards = ({
     title: string;
     stars?: number;
     services: string[];
-    image?: string; // Optional image URL
+    image?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -41,20 +40,20 @@ export const InfiniteMovingCards = ({
   useEffect(() => {
     // Initial check on mount
     checkIfMobile();
-
+    
     // Add window resize listener
     window.addEventListener("resize", checkIfMobile);
-
+    
     // Initialize animations
     addAnimation();
-
+    
     // Cleanup
     return () => {
       window.removeEventListener("resize", checkIfMobile);
     };
-  }, [addAnimation]);
+  }, []); // Remove addAnimation from dependencies
 
-  // Touch handlers for mobile pause
+  // Simple touch handlers for mobile pause
   const handleTouchStart = () => {
     setIsPaused(true);
   };
@@ -63,11 +62,8 @@ export const InfiniteMovingCards = ({
     setIsPaused(false);
   };
 
-  // Re-apply speed when mobile state changes
-  useEffect(() => {
-    getSpeed();
-  }, [isMobile]);
-
+  // Remove the extra useEffect that was causing speed re-application
+  
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
@@ -103,25 +99,13 @@ export const InfiniteMovingCards = ({
 
   const getSpeed = () => {
     if (containerRef.current) {
-      // Faster speed on mobile, slower on desktop
-      if (isMobile) {
-        // Mobile speeds
-        if (speed === "fast") {
-          containerRef.current.style.setProperty("--animation-duration", "15s");
-        } else if (speed === "normal") {
-          containerRef.current.style.setProperty("--animation-duration", "25s");
-        } else {
-          containerRef.current.style.setProperty("--animation-duration", "40s");
-        }
+      // Same speeds for both mobile and desktop - let CSS handle it
+      if (speed === "fast") {
+        containerRef.current.style.setProperty("--animation-duration", "25s");
+      } else if (speed === "normal") {
+        containerRef.current.style.setProperty("--animation-duration", "40s");
       } else {
-        // Desktop speeds
-        if (speed === "fast") {
-          containerRef.current.style.setProperty("--animation-duration", "25s");
-        } else if (speed === "normal") {
-          containerRef.current.style.setProperty("--animation-duration", "40s");
-        } else {
-          containerRef.current.style.setProperty("--animation-duration", "80s");
-        }
+        containerRef.current.style.setProperty("--animation-duration", "50s");
       }
     }
   };
@@ -150,7 +134,6 @@ export const InfiniteMovingCards = ({
             className="md:min-w-[550px] w-[350px] flex flex-col gap-2 flex-shrink-0 flex-grow-0 bg-accent-primary px-2 pb-2 pt-2 rounded-2xl border border-secondary shadow-left"
             key={`${item.name}-${idx}`}
           >
-
             <div className="flex justify-between items-center px-1">
               <div className="flex items-center gap-2 flex-1">
                 {item.services.map((service, index) => (
@@ -165,22 +148,18 @@ export const InfiniteMovingCards = ({
                 ))}
               </div>
               
-              {/* Star icon */}
               <Star className="text-primary-light w-5 h-6" filled/>
             </div>
 
             <div className="bg-primary-light w-full h-full rounded-lg p-4">
               <div className="flex flex-col h-full justify-between gap-4">
-                {/* Quote - using min-height to ensure consistent space */}
                 <div className="flex-grow">
                   <p className="lg:text-[16px] text-sm font-aileron text-secondary-dark break-words tracking-tight">
                     &quot;{item.quote}&quot;
                   </p>
                 </div>
 
-                  {/* Author info with profile icon/image - fixed height section */}
                 <div className="mt-4 h-14 flex items-end gap-3">
-                  {/* Profile icon or custom image */}
                   {item.image ? (
                     <div className="w-12 h-12 flex-shrink-0 rounded-full overflow-hidden border-2 border-accent-primary">
                       <Image
@@ -195,7 +174,6 @@ export const InfiniteMovingCards = ({
                     <ProfileIcon className="w-12 h-12 text-accent-primary flex-shrink-0" />
                   )}
                   
-                  {/* Author details */}
                   <div className="flex flex-col justify-end min-h-[48px]">
                     <p className="font-semibold text-body-lg font-noto-serif text-primary-dark leading-tight">
                       {item.name}

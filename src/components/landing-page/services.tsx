@@ -1,7 +1,7 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ChapterBanner from "../shared/chapter-banner";
@@ -20,6 +20,35 @@ const Services = () => {
   const section2Ref = useRef<HTMLDivElement>(null);
   const section3Ref = useRef<HTMLDivElement>(null);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Memoize expensive calculations
+  const maskConfig = useMemo(() => {
+    if (typeof window === "undefined") return null;
+
+    const { innerWidth: width, innerHeight: height } = window;
+    const maxSize = 1.25 * width + 1.25 * height;
+
+    return {
+      maxSize,
+      maskImage: "url('/mask-star.svg')",
+      maskPosition: "center",
+      maskRepeat: "no-repeat",
+    };
+  }, []);
+
   const serviceData = [
     {
       title: "Branding",
@@ -36,7 +65,7 @@ const Services = () => {
         "Branding goes beyond visuals — we create an experience that tells your story and leaves an impression.",
       icon: <BroadStar className="w-full h-full" />,
       bottomIcon: <ShinyStar className="w-full h-full scale-125" />,
-      image: "/branding.png",
+      image: "/branding.webp",
       dotsImage: "/digital-dots.svg",
     },
     {
@@ -53,7 +82,7 @@ const Services = () => {
       bottomIcon: (
         <BroadStar className="w-full h-full text-secondary-light scale-80" />
       ),
-      image: "/branding.jpg",
+      image: "/design.webp",
       dotsImage: "/dots-group-light.svg",
     },
     {
@@ -72,13 +101,15 @@ const Services = () => {
       bottomIcon: (
         <BroadStar className="w-full h-full text-primary-light scale-80" />
       ),
-      image: "/development.jpg",
+      image: "/development.webp",
       dotsImage: "/dots-group-light.svg",
     },
   ];
 
   useGSAP(
     () => {
+      if (!maskConfig) return;
+
       const sections = [
         section1Ref.current,
         section2Ref.current,
@@ -87,12 +118,14 @@ const Services = () => {
 
       // Initial setup - set mask to star SVG at center with small initial size for visibility
       gsap.set(sections, {
-        WebkitMaskImage:
-          "url('https://blog.olivierlarose.com/_next/static/media/star.c9387850.svg')",
-        WebkitMaskPosition: "center",
-        WebkitMaskRepeat: "no-repeat",
+        WebkitMaskImage: maskConfig.maskImage,
+        WebkitMaskPosition: maskConfig.maskPosition,
+        WebkitMaskRepeat: maskConfig.maskRepeat,
         WebkitMaskSize: "0px", // Start with small visible size instead of 0
       });
+
+      let lastUpdate = 0;
+      const throttleDelay = isMobile ? 33 : 16; // 30fps mobile, 60fps desktop
 
       // Create scroll-triggered animations for each section
       sections.forEach((section, index) => {
@@ -100,8 +133,14 @@ const Services = () => {
           trigger: maskContainerRef.current,
           start: "top 70%",
           end: "bottom bottom",
-          scrub: 1,
+          scrub: true,
           onUpdate: (self) => {
+            const now = performance.now();
+
+            // Throttle updates on mobile
+            if (isMobile && now - lastUpdate < throttleDelay) return;
+            lastUpdate = now;
+
             const progress = self.progress;
 
             // Calculate section progress based on thirds
@@ -112,31 +151,28 @@ const Services = () => {
             );
 
             // Calculate mask size with minimum base size for visibility
-            const { innerWidth: width, innerHeight: height } = window;
-            const maxSize = 1.25 * width + 1.25 * height;
-            const maskSize = sectionProgress * maxSize;
+            const maskSize = sectionProgress * maskConfig.maxSize;
 
             if (section) {
               gsap.set(section, {
                 WebkitMaskSize: `${maskSize}px`,
-                WebkitMaskImage:
-                  "url('https://blog.olivierlarose.com/_next/static/media/star.c9387850.svg')",
-                WebkitMaskPosition: "center",
-                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskImage: maskConfig.maskImage,
+                WebkitMaskPosition: maskConfig.maskPosition,
+                WebkitMaskRepeat: maskConfig.maskRepeat,
               });
             }
           },
         });
       });
     },
-    { scope: maskContainerRef }
+    { scope: maskContainerRef, dependencies: [maskConfig, isMobile] }
   );
 
   return (
     <section
       id="services"
       ref={maskContainerRef}
-      className="w-full bg-secondary-dark relative h-[300vh]" // Changed from bg-primary-light to bg-secondary-dark
+      className="w-full bg-secondary-dark relative h-[300vh] will-change-scroll"
     >
       <ChapterBanner
         chapterNumber="Chapter 4"
@@ -144,9 +180,15 @@ const Services = () => {
         className="border-b border-primary-light"
       />
 
-      <div ref={maskStickyRef} className="sticky top-0 h-screen w-full">
+      <div
+        ref={maskStickyRef}
+        className="sticky top-0 h-screen w-full will-change-transform"
+      >
         {/* Section 1 - Branding */}
-        <div ref={section1Ref} className="absolute inset-0 w-full h-full">
+        <div
+          ref={section1Ref}
+          className="absolute inset-0 w-full h-full will-change-transform"
+        >
           <ServiceCard
             title={serviceData[0].title}
             description={serviceData[0].description}
@@ -161,7 +203,10 @@ const Services = () => {
         </div>
 
         {/* Section 2 - Web Development */}
-        <div ref={section2Ref} className="absolute inset-0 w-full h-full">
+        <div
+          ref={section2Ref}
+          className="absolute inset-0 w-full h-full will-change-transform"
+        >
           <ServiceCard
             title={serviceData[1].title}
             description={serviceData[1].description}
@@ -180,7 +225,10 @@ const Services = () => {
         </div>
 
         {/* Section 3 - Digital Strategy */}
-        <div ref={section3Ref} className="absolute inset-0 w-full h-full">
+        <div
+          ref={section3Ref}
+          className="absolute inset-0 w-full h-full will-change-transform"
+        >
           <ServiceCard
             title={serviceData[2].title}
             description={serviceData[2].description}

@@ -1,23 +1,27 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import ChapterBanner from "../shared/chapter-banner";
 import Button from "../ui/button";
 import WorkCard from "../ui/work-card";
 import { useSplitTextMask } from "@/hooks/useSplitTextMask";
 
 const Work = () => {
-  // Split text animation for mobile
-  const { textRef: workTextRefMobile } = useSplitTextMask({
-    start: () => `top ${window.innerHeight * 0.8}px`,
-    stagger: 0.01,
-    duration: 0.6,
-    splitType: "words",
-    maskType: "words",
-    direction: "up",
-    ease: "power3.out"
-  });
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Split text animation for desktop
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  
   const { textRef: workTextRefDesktop } = useSplitTextMask({
     start: () => `top ${window.innerHeight * 0.9}px`,
     stagger: 0.01,
@@ -28,7 +32,6 @@ const Work = () => {
     ease: "power3.out"
   });
 
-  // Split text animation for desktop XL
   const { textRef: workTextRefXL } = useSplitTextMask({
     start: () => `top ${window.innerHeight * 0.9}px`,
     stagger: 0.01,
@@ -50,10 +53,10 @@ const Work = () => {
     },
     {
       date: "02/03",
-      title: "SendEase  ",
-      category: "Email marketing",
-      image: "/work-send-ease.jpg",
-      description: "Effortlessly create, send, & analyze...",
+      title: "Upcreatrorz",
+      category: "Agency site",
+      image: "/work-upcreatorz-2.jpg",
+      description: "India's First Luxury Branding House...",
       href: "https://send-ease.vercel.app/",
     },
     {
@@ -83,7 +86,6 @@ const Work = () => {
           {/* Section intro */}
           <div className="mb-8">
             <p 
-              ref={workTextRefMobile}
               className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl"
             >
               Every project tells a story — of vision brought to life, of brands

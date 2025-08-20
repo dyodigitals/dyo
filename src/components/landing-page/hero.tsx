@@ -109,7 +109,7 @@ const Hero = () => {
             />
 
             <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="relative hero-image-container border border-primary-dark rounded-xl bg-primary-light shadow-sm">
+              <div className="relative hero-image-container border border-primary-dark rounded-lg bg-primary-light shadow-sm">
                 {/* Mobile stars - smaller and closer */}
                 <div className="absolute -top-8 -right-8 z-30">
                   <GroupedStars className="w-8 h-10 text-accent-primary" />
@@ -120,7 +120,7 @@ const Hero = () => {
                 </div>
 
                 <Image
-                  src="/hero-1.jpg"
+                  src="/hero-2.webp"
                   alt="Creative design showcase"
                   width={160}
                   height={210}

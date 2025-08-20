@@ -66,10 +66,10 @@ const FooterContent = () => {
           </div>
 
           {/* Navigation Links - Top Right */}
-          <div className="w-1/4 flex justify-end items-center">
-           <div className="flex flex-row sm:flex-col items-start gap-3 flex-wrap sm:flex-nowrap justify-start sm:items-start">
-             <div className="flex justify-start items-center gap-3">
-              <Star className="w-4 h-5 text-primary-dark" />
+          <div className="w-1/2 flex justify-end items-center">
+           <div className="flex flex-row-reverse justify-start gap-4 sm:flex-col items-start flex-wrap sm:flex-nowrap sm:items-start">
+             <div className="flex justify-start items-center gap-2 md:gap-3">
+              <Star className="w-3 h-4 md:w-4 md:h-5 text-primary-dark" />
               <a
                 href="#work"
                 className="block text-left text-body sm:text-section-heading-small font-noto-serif font-semibold text-primary-dark hover:text-accent-primary transition-colors duration-300 relative group"
@@ -78,8 +78,8 @@ const FooterContent = () => {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary-dark group-hover:bg-accent-primary transition-all duration-300 ease-out group-hover:w-full group-hover:left-0 transform origin-center"></span>
               </a>
             </div>
-            <div className="flex items-center gap-3">
-              <Star className="w-4 h-5 text-primary-dark" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <Star className="w-3 h-4 md:w-4 md:h-5 text-primary-dark" />
               <a
                 href="#pricing"
                 className="block text-left text-body sm:text-section-heading-small font-noto-serif font-semibold text-primary-dark hover:text-accent-primary transition-colors duration-300 relative group"
@@ -88,8 +88,8 @@ const FooterContent = () => {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary-dark group-hover:bg-accent-primary transition-all duration-300 ease-out group-hover:w-full group-hover:left-0 transform origin-center"></span>
               </a>
             </div>
-            <div className="flex items-center gap-3">
-              <Star className="w-4 h-5 text-primary-dark" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <Star className="w-3 h-4 md:w-4 md:h-5 text-primary-dark" />
               <a
                 href="#method"
                 className="block text-left text-body sm:text-section-heading-small font-noto-serif font-semibold text-primary-dark hover:text-accent-primary transition-colors duration-300 relative group"
@@ -98,8 +98,8 @@ const FooterContent = () => {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary-dark group-hover:bg-accent-primary transition-all duration-300 ease-out group-hover:w-full group-hover:left-0 transform origin-center"></span>
               </a>
             </div>
-            <div className="flex items-center gap-3">
-              <Star className="w-4 h-5 text-primary-dark" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <Star className="w-3 h-4 md:w-4 md:h-5 text-primary-dark" />
               <a
                 href="#faq"
                 className="block text-left text-body sm:text-section-heading-small font-noto-serif font-semibold text-primary-dark hover:text-accent-primary transition-colors duration-300 relative group"
@@ -108,8 +108,8 @@ const FooterContent = () => {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary-dark group-hover:bg-accent-primary transition-all duration-300 ease-out group-hover:w-full group-hover:left-0 transform origin-center"></span>
               </a>
             </div>
-            <div className="flex items-center gap-3">
-              <Star className="w-4 h-5 text-primary-dark" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <Star className="w-3 h-4 md:w-4 md:h-5 text-primary-dark" />
               <a
                 href="#book-call"
                 className="block text-left text-body sm:text-section-heading-small font-noto-serif font-semibold text-primary-dark hover:text-accent-primary transition-colors duration-300 relative group"
