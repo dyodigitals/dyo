@@ -88,12 +88,12 @@ const Work = () => {
             >
               Every project tells a story — of vision brought to life, of brands
               finding their voice, and of design that works harder than it
-              looks. Here's a glimpse at what we've built for those who dared to
+              looks. Here&apos;s a glimpse at what we&apos;ve built for those who dared to
               stand out.
             </p>
           </div>
 
-          {mobileOrderItems.map((item, index) => (
+          {mobileOrderItems.map((item) => (
             <WorkCard
               key={item.date}
               date={item.date}
@@ -118,7 +118,7 @@ const Work = () => {
               >
                 Every project tells a story — of vision brought to life, of
                 brands finding their voice, and of design that works harder than
-                it looks. Here's a glimpse at what we've built for those who
+                it looks. Here&apos;s a glimpse at what we&apos;ve built for those who
                 dared to stand out.
               </p>
             </div>
@@ -155,7 +155,7 @@ const Work = () => {
                 >
                   Every project tells a story — of vision brought to life, of
                   brands finding their voice, and of design that works harder
-                  than it looks. Here's a glimpse at what we've built for those
+                  than it looks. Here&apos;s a glimpse at what we&apos;ve built for those
                   who dared to stand out.
                 </p>
               </div>

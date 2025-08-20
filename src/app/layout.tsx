@@ -1,9 +1,8 @@
+import LenisProvider from "@/providers/lenis-provider";
 import type { Metadata } from "next";
-import { Geist, Noto_Serif_Display } from "next/font/google";
+import { Noto_Serif_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/shared/navbar";
-import LenisProvider from "@/providers/lenis-provider";
 
 const notoSerifDisplay = Noto_Serif_Display({
   subsets: ["latin"],

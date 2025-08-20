@@ -1,5 +1,4 @@
 "use client"
-import Calendar from "@/components/calendar/cal";
 import Benefits from "@/components/landing-page/benefits";
 import BookCall from "@/components/landing-page/book-call";
 import FAQ from "@/components/landing-page/faq";

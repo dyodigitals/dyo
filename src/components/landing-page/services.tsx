@@ -106,7 +106,6 @@ const Services = () => {
 
             // Calculate section progress based on thirds
             const startProgress = index * 0.33;
-            const endProgress = (index + 1) * 0.33;
             const sectionProgress = Math.max(
               0,
               Math.min(1, (progress - startProgress) / 0.33)

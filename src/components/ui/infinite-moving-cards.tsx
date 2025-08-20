@@ -52,7 +52,7 @@ export const InfiniteMovingCards = ({
     return () => {
       window.removeEventListener("resize", checkIfMobile);
     };
-  }, []);
+  }, [addAnimation]);
 
   // Touch handlers for mobile pause
   const handleTouchStart = () => {

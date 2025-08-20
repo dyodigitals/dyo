@@ -2,11 +2,16 @@
 import { useBenefitDropdown } from "@/hooks/useBenefitDropdown";
 import Image from "next/image";
 
+interface IconProps {
+  className?: string;
+  filled?: boolean;
+}
+
 interface BenefitItemProps {
   item: {
     title: string;
     content: string;
-    icon: React.ComponentType<any>;
+    icon: React.ComponentType<IconProps>;
     image: string;
   };
   index: number;
@@ -14,7 +19,7 @@ interface BenefitItemProps {
   onToggle: () => void;
 }
 
-export const BenefitItem: React.FC<BenefitItemProps> = ({ item, index, isExpanded, onToggle }) => {
+export const BenefitItem: React.FC<BenefitItemProps> = ({ item, isExpanded, onToggle }) => {
   const { contentRef, imageRef, containerRef, shouldRender } = useBenefitDropdown(isExpanded);
 
   return (

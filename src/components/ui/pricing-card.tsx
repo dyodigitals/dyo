@@ -13,7 +13,6 @@ interface PricingCardProps {
 }
 
 const PricingCard = ({
-  title,
   description,
   features,
   price,
@@ -26,9 +25,7 @@ const PricingCard = ({
       <div className="bg-primary-light border border-primary-dark rounded-2xl pt-4 relative">
         <div className="w-full px-6 flex flex-row-reverse items-center justify-between pb-3 mb-6 border-b border-primary-dark">
           {/* Header with icon */}
-          {icon && (
-            <div className="">{icon}</div>
-          )}
+          {icon && <div className="">{icon}</div>}
 
           {/* Title and description */}
           <div className="w-2/3">

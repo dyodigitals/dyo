@@ -21,7 +21,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   showArrow?: boolean;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export default function Button({

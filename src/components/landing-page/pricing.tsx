@@ -109,7 +109,7 @@ const Pricing = () => {
 
         <div className="text-center mt-16">
           <p className="text-body text-primary-dark/70 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Not sure which package is right for you? Let's have a conversation about your specific needs and goals.
+            Not sure which package is right for you? Let&apos;s have a conversation about your specific needs and goals.
           </p>
           <button className="bg-accent-primary text-primary-light px-12 py-4 rounded-full font-noto-serif font-semibold text-body transition-all duration-300 hover:cursor-pointer hover:scale-102 hover:shadow-lg hover:shadow-secondary-dark/20 border border-secondary-dark hover:border-accent-primary">
             Schedule a Free Consultation

@@ -82,8 +82,8 @@ const Testimonials = () => {
             ref={testimonialsTextRef}
             className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl"
           >
-            Don't just take our word for it — hear what our clients have to say
-            about working with us and the results we've delivered together.
+            Don&apos;t just take our word for it — hear what our clients have to say
+            about working with us and the results we&apos;ve delivered together.
           </p>
         </div>
 
