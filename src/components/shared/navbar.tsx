@@ -7,16 +7,16 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#work", label: "Work" },
-    { href: "#pricing", label: "Pricing" },
-    { href: "#faq", label: "FAQ" },
-    { href: "#process", label: "Process" },
-    { href: "#book-call", label: "Contact" },
+    { href: "#work", label: "work" },
+    { href: "#pricing", label: "pricing" },
+    { href: "#faq", label: "faq" },
+    { href: "#method", label: "process" },
+    { href: "#book-call", label: "contact" },
   ];
 
   return (
-    <nav className="w-full px-4 md:px-[2.5vw] bg-primary-light sticky top-0 z-50 border-b border-primary-dark/10">
-      <div className="flex justify-between items-center py-3 md:py-4">
+    <nav className="w-full px-4 md:px-[2.5vw] bg-primary-light sticky top-0 z-50">
+      <div className="flex justify-between items-center py-2">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <Image

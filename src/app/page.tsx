@@ -1,4 +1,3 @@
-"use client"
 import Benefits from "@/components/landing-page/benefits";
 import BookCall from "@/components/landing-page/book-call";
 import FAQ from "@/components/landing-page/faq";
@@ -11,10 +10,13 @@ import Testimonials from "@/components/landing-page/testimonials";
 import Work from "@/components/landing-page/work";
 import Footer from "@/components/shared/footer";
 
+
 export default function Home() {
+  
+ 
   return (
    <>
-   <Hero/>
+   <Hero />
    <Marquee/>
    <Benefits/>
    <Work/>
