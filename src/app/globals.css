@@ -1,26 +1,256 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+@theme {
+  --color-primary-light: #FFFDE4;
+  --color-secondary-light: #FFFDE9;
+  --color-primary-dark: #292929;
+  --color-secondary-dark: #262523;
+  --color-accent-primary: #4B2840;
+  
+  --font-noto-serif: 'Noto Serif Display', serif;
+  --font-aileron: 'Aileron', sans-serif;
+  
+  /* Typography scale - Desktop base (1024px+) */
+  --text-hero: 5rem;
+  --text-hero-secondary: 4.5rem;
+  --text-section-heading-large: 3rem;
+  --text-section-heading: 2.5rem;
+  --text-section-heading-small: 1.75rem;
+  --text-chapter-number: 1.5rem;
+  --text-body-lg: 1.25rem;
+  --text-body: 1.125rem;
+  --text-body-sm: 0.95rem;
+  
+  /* Letter spacing */
+  --tracking-tight: -0.02em;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+ 
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FFFDE4;
+  --foreground: #292929;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-aileron);
+}
+
+
+
+/* Hero component base sizes (desktop 1024px+) */
+.hero-image-frame {
+  width: 216px;
+  height: 286px;
+}
+
+.hero-image-container {
+  padding: 7px;
+}
+
+.hero-dots {
+  width: 460px;
+  height: 460px;
+}
+
+/* Responsive Breakpoints - Mobile First Approach */
+
+/* Large tablets and small desktops (768px - 1023px) */
+@media (max-width: 1023px) {
+  :root {
+    --text-hero: 3rem;
+    --text-hero-secondary: 3rem;
+    --text-section-heading: 2rem;
+    --text-section-heading-large: 3rem;
+    --text-section-heading-small: 1.5rem;
+    --text-chapter-number: 1.5rem;
+    --text-body-lg: 1.125rem;
+    --text-body: 1rem;
+    --text-body-sm: 0.9rem;
+  }
+  
+  .hero-image-frame {
+    width: 180px;
+    height: 240px;
+  }
+  
+  .hero-image-container {
+    padding: 6px;
+  }
+  
+  .hero-dots {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* Mobile landscape (640px - 767px) */
+@media (max-width: 767px) {
+  :root {
+    --text-hero: 2.5rem;
+    --text-hero-secondary: 2.25rem;
+    --text-section-heading: 1.75rem;
+    --text-section-heading-large: 2.5rem;
+    --text-section-heading-small: 1.375rem;
+    --text-chapter-number: 1.25rem;
+    --text-body-lg: 1rem;
+    --text-body: 0.95rem;
+    --text-body-sm: 0.85rem;
+  }
+  
+  .hero-image-frame {
+    width: 160px;
+    height: 210px;
+  }
+  
+  .hero-dots {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+/* Mobile portrait (max 639px) */
+@media (max-width: 639px) {
+  :root {
+    --text-hero: 2.25rem;
+    --text-hero-secondary: 2rem;
+    --text-section-heading: 1.5rem;
+    --text-section-heading-large: 2.5rem;
+    --text-section-heading-small: 1.25rem;
+    --text-chapter-number: 1.125rem;
+    --text-body-lg: 0.95rem;
+    --text-body: 0.9rem;
+    --text-body-sm: 0.8rem;
+  }
+  
+  .hero-image-frame {
+    width: 140px;
+    height: 185px;
+  }
+  
+  .hero-dots {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* Small mobile (max 479px) */
+@media (max-width: 479px) {
+  :root {
+    --text-hero: 2rem;
+    --text-hero-secondary: 1.875rem;
+    --text-section-heading: 1.5rem;
+    --text-section-heading-large: 2rem;
+    --text-section-heading-small: 1.5rem;
+    --text-chapter-number: 1rem;
+    --text-body-lg: 14px;
+    --text-body: 0.85rem;
+    --text-body-sm: 0.75rem;
+  }
+  
+  .hero-image-frame {
+    width: 120px;
+    height: 160px;
+  }
+  
+  .hero-dots {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* Large desktop screens (1440px+) - with clamp for smooth scaling */
+@media (min-width: 1440px) {
+  :root {
+    --text-hero: clamp(5.5rem, 5rem + 0.5vw, 6.5rem);
+    --text-hero-secondary: clamp(5rem, 4.5rem + 0.4vw, 6rem);
+    --text-section-heading: clamp(2.5rem, 2.5rem + 0.2vw, 3rem);
+    --text-section-heading-large: clamp(4rem, 4rem + 0.3vw, 4.8rem);
+    
+    --text-chapter-number: clamp(2rem, 2rem + 0.1vw, 2.25rem);
+    --text-body-lg: clamp(1.25rem, 1.25rem + 0.1vw, 1.375rem);
+    --text-body: clamp(1.125rem, 1.125rem + 0.05vw, 1.25rem);
+  }
+  
+  .hero-image-frame {
+    width: clamp(216px, 216px + 1vw, 280px);
+    height: clamp(286px, 286px + 1.3vw, 370px);
+  }
+  
+  .hero-image-container {
+    padding: clamp(7px, 7px + 0.05vw, 9px);
+  }
+  
+  .hero-dots {
+    width: clamp(460px, 440px + 2vw, 560px);
+    height: clamp(460px, 440px + 2vw, 560px);
+  }
+}
+
+/* Ultra-wide screens (1920px+) - cap the scaling */
+@media (min-width: 1920px) {
+  :root {
+    --text-hero: 8rem;
+    --text-hero-secondary: 7rem;
+    --text-section-heading: 3rem;
+    --text-section-heading-large: 4.8rem;
+    --text-section-heading-small: 2rem;
+    --text-chapter-number: 2.25rem;
+    --text-body-lg: 1.375rem;
+    --text-body: 1.25rem;
+  }
+  
+  .hero-image-frame {
+    width: 340px;
+    height: 400px;
+  }
+  
+  .hero-image-container {
+    padding: 8px;
+  }
+  
+  .hero-dots {
+    width: 560px;
+    height: 560px;
+  }
 }
