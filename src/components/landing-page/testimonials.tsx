@@ -41,7 +41,7 @@ const Testimonials = () => {
     },
     {
       quote:
-        "Honestly, I was blown away at how well Allen and Prem made my website. I just gave them rough ideas about my fitness brand and they turned them into something awesome that totally represents my training style and who I am as a trainer. It looks clean, has amazing animations, and really gets my vibe",
+        "Honestly, I was blown away at how well Allen and Prem made my website. I just gave them rough ideas about my fitness brand and they turned them into something awesome that totally represents my training style and who I am as a trainer. It looks clean, has amazing animations, and really gets my brand and vision",
       name: "Adam Brennan",
       title: "MindMuscleMasterclass",
       services: ["Conceptualization", "Web Design", "Development"],
@@ -51,7 +51,7 @@ const Testimonials = () => {
 
     {
       quote:
-        "Working with Dyo was an absolute game-changer for our agency.. I shared the Branding & the overall vibe we wanted for Upcreatorz, and they turned it into a clean, bold website that truly reflects our agency. From smooth animations to a layout that highlights our services perfectly, they nailed it-without us having to manage every detail.",
+        "Working with Dyo was an absolute game-changer for our agency.. I shared the Branding & the overall aesthetics  we wanted for Upcreatorz, and they turned it into a clean, bold website that truly reflects our agency. From smooth animations to a layout that highlights our services perfectly, they nailed it-without us having to manage every detail.",
       name: "Parth Vadhera",
       title: "CTO Upcreatorz",
       services: ["Conceptualization", "Web Design", "Development"],

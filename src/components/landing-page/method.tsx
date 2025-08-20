@@ -97,7 +97,7 @@ const Method = () => {
       buttonHoverText: "#FFFDE4",
       buttonHref: "#book-call",
       image: null,
-      backgroundImage: "/launch-support-2.jpg", // You can replace this with your actual image path
+      backgroundImage: "/launch-support-bg.webp", // You can replace this with your actual image path
     },
   ];
 
@@ -136,7 +136,7 @@ const Method = () => {
               )}
 
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-end gap-4 justify-start mb-4">
                   <span
                     className={`text-4xl md:text-6xl font-noto-serif font-semibold ${step.numberColor}`}
                   >

@@ -161,7 +161,7 @@ const FAQ = () => {
                   onClick={() => toggleAccordion(index)}
                 >
                   <span
-                    className={`text-body-lg md:text-section-heading-small font-noto-serif font-medium transition-colors duration-300 ${
+                    className={`text-body-lg md:text-section-heading-small font-noto-serif font-semibold transition-colors duration-300 ${
                       expandedIndex === index
                         ? "text-primary-light"
                         : "text-primary-dark"

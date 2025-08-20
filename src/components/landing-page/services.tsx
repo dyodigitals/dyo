@@ -121,51 +121,54 @@ const Services = () => {
         WebkitMaskImage: maskConfig.maskImage,
         WebkitMaskPosition: maskConfig.maskPosition,
         WebkitMaskRepeat: maskConfig.maskRepeat,
-        WebkitMaskSize: "0px", // Start with small visible size instead of 0
+        WebkitMaskSize: "0px",
       });
 
-      let lastUpdate = 0;
-      const throttleDelay = isMobile ? 33 : 16; // 30fps mobile, 60fps desktop
-
-      // Create scroll-triggered animations for each section
+      // Create scroll-triggered animations for each section using GSAP's built-in animation
       sections.forEach((section, index) => {
+        if (!section) return;
+
+        // Calculate when this section should start animating (in thirds)
+        const startProgress = index * 33.33; // Convert to percentage
+        
+
         ScrollTrigger.create({
           trigger: maskContainerRef.current,
           start: "top 70%",
           end: "bottom bottom",
           scrub: true,
+          invalidateOnRefresh: true, // Automatically recalculate on resize
+          animation: gsap.fromTo(
+            section,
+            {
+              WebkitMaskSize: "0px",
+            },
+            {
+              WebkitMaskSize: `${maskConfig.maxSize}px`,
+              ease: "none",
+              duration: 1, // This gets overridden by scrub, but needed for the tween
+            }
+          ).progress(0), // Start at 0 progress
           onUpdate: (self) => {
-            const now = performance.now();
-
-            // Throttle updates on mobile
-            if (isMobile && now - lastUpdate < throttleDelay) return;
-            lastUpdate = now;
-
-            const progress = self.progress;
-
-            // Calculate section progress based on thirds
-            const startProgress = index * 0.33;
+            // Map the overall progress to this section's progress
             const sectionProgress = Math.max(
               0,
-              Math.min(1, (progress - startProgress) / 0.33)
+              Math.min(1, (self.progress * 100 - startProgress) / 33.33)
             );
 
-            // Calculate mask size with minimum base size for visibility
-            const maskSize = sectionProgress * maskConfig.maxSize;
-
-            if (section) {
-              gsap.set(section, {
-                WebkitMaskSize: `${maskSize}px`,
-                WebkitMaskImage: maskConfig.maskImage,
-                WebkitMaskPosition: maskConfig.maskPosition,
-                WebkitMaskRepeat: maskConfig.maskRepeat,
-              });
+            // Update the animation progress for this section only
+            if (self.animation) {
+              self.animation.progress(sectionProgress);
             }
           },
         });
       });
     },
-    { scope: maskContainerRef, dependencies: [maskConfig, isMobile] }
+    {
+      scope: maskContainerRef,
+      dependencies: [maskConfig],
+      revertOnUpdate: true, // Clean up previous animations on updates
+    }
   );
 
   return (

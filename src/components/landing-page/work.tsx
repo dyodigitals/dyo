@@ -57,7 +57,7 @@ const Work = () => {
       category: "Agency site",
       image: "/work-upcreatorz-2.jpg",
       description: "India's First Luxury Branding House...",
-      href: "https://send-ease.vercel.app/",
+      href: "https://upcreatorz.com/",
     },
     {
       date: "03/03",
