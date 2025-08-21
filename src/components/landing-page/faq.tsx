@@ -1,15 +1,11 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ChapterBanner from "../shared/chapter-banner";
 
 const FAQ = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const accordionRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const faqItems = [
     {
@@ -35,7 +31,7 @@ const FAQ = () => {
     {
       question: "Who do you work with?",
       answer:
-        "We can work with any client that needs a website - we're very flexible. However, we focus mainly on creative niches such as photography.",
+        "We can work with any client that needs a website - we're very flexible. However, we focus mainly on creative niches, specializing in photography.",
     },
     {
       question: "Will my website help me get more bookings?",
@@ -45,7 +41,7 @@ const FAQ = () => {
     {
       question: "What if I already have a logo/brand and just need a website?",
       answer:
-        "Having your own brand is great! We suggest going with the single website package that starts at $1999.",
+        "Having your own brand is great! We suggest going with the single website package that starts at $2499.",
     },
     {
       question: "Do you optimise websites for mobile & other devices?",
@@ -59,81 +55,12 @@ const FAQ = () => {
     },
   ];
 
-  // Initialize GSAP and set up any global animations
-  useGSAP(
-    () => {
-      // Initialize accordion content elements to be hidden
-      gsap.set(accordionRefs.current, {
-        height: 0,
-        opacity: 0,
-      });
-
-      gsap.from(".faq-heading", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      });
-    },
-    { scope: containerRef }
-  );
-
-  // Ensure accordionRefs array is updated when faqItems change
-  useEffect(() => {
-    // Reset the refs array to match the length of faqItems
-    accordionRefs.current = accordionRefs.current.slice(0, faqItems.length);
-
-    // Fill any undefined slots with null
-    while (accordionRefs.current.length < faqItems.length) {
-      accordionRefs.current.push(null);
-    }
-  }, [faqItems.length]);
-
-  // Toggle accordion item using GSAP
   const toggleAccordion = (index: number) => {
-    const contentElement = accordionRefs.current[index];
-
-    if (!contentElement) return;
-
-    if (expandedIndex === index) {
-      // Close the accordion
-      gsap.to(contentElement, {
-        height: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "back.out(1)",
-        onComplete: () => {
-          setExpandedIndex(null);
-        },
-      });
-    } else {
-      // If there's an open accordion, close it first
-      if (expandedIndex !== null && accordionRefs.current[expandedIndex]) {
-        gsap.to(accordionRefs.current[expandedIndex], {
-          height: 0,
-          opacity: 0,
-          duration: 0.5,
-          ease: "back.out(1)",
-        });
-      }
-
-      // Open the new accordion
-      setExpandedIndex(index);
-      gsap.fromTo(
-        contentElement,
-        { height: 0, opacity: 0 },
-        {
-          height: "auto",
-          opacity: 1,
-          duration: 0.5,
-          ease: "back.out(1.4)",
-        }
-      );
-    }
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="w-full bg-primary-light relative" ref={containerRef}>
+    <section id="faq" className="w-full bg-primary-light relative">
       <ChapterBanner
         chapterNumber="Chapter 9"
         chapterTitle="COMMON QUESTIONS"
@@ -181,10 +108,9 @@ const FAQ = () => {
                 </button>
 
                 <div
-                  ref={(el) => {
-                    accordionRefs.current[index] = el;
-                  }}
-                  className="overflow-hidden"
+                  className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                    expandedIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
                 >
                   <div className="px-6 pb-6 md:px-8 md:pb-8">
                     <div className="w-full h-px bg-primary-light opacity-40 mb-4"></div>

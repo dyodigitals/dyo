@@ -1,53 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import ChapterBanner from "../shared/chapter-banner";
 import Button from "../ui/button";
 import WorkCard from "../ui/work-card";
-import { useSplitTextMask } from "@/hooks/useSplitTextMask";
 
 const Work = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  
-  const { textRef: workTextRefDesktop } = useSplitTextMask({
-    start: () => `top ${window.innerHeight * 0.9}px`,
-    stagger: 0.01,
-    duration: 0.6,
-    splitType: "words",
-    maskType: "words",
-    direction: "up",
-    ease: "power3.out"
-  });
-
-  const { textRef: workTextRefXL } = useSplitTextMask({
-    start: () => `top ${window.innerHeight * 0.9}px`,
-    stagger: 0.01,
-    duration: 0.6,
-    splitType: "words",
-    maskType: "words",
-    direction: "up",
-    ease: "power3.out"
-  });
-
   const workItems = [
     {
       date: "01/03",
       title: "Theothersideoflife",
       category: "Coach site",
-      image: "/work-conor.jpg",
+      image: "/work-conor.webp",
       description: "Helping you become the best ver...",
       href: "https://theothersideoflife.co.uk",
     },
@@ -55,7 +18,7 @@ const Work = () => {
       date: "02/03",
       title: "Upcreatrorz",
       category: "Agency site",
-      image: "/work-upcreatorz-2.jpg",
+      image: "/work-upcreatorz-2.webp",
       description: "India's First Luxury Branding House...",
       href: "https://upcreatorz.com/",
     },
@@ -63,7 +26,7 @@ const Work = () => {
       date: "03/03",
       title: "PiksByVik",
       category: "Photographer site",
-      image: "/work-victoria.jpg",
+      image: "/work-victoria.webp",
       description: "Capturing Captivating & Genuine...",
       href: "https://piksbyvik.vercel.app",
     },
@@ -85,9 +48,7 @@ const Work = () => {
         <div className="md:hidden space-y-8">
           {/* Section intro */}
           <div className="mb-8">
-            <p 
-              className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl"
-            >
+            <p className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl">
               Every project tells a story — of vision brought to life, of brands
               finding their voice, and of design that works harder than it
               looks. Here&apos;s a glimpse at what we&apos;ve built for those who dared to
@@ -114,10 +75,7 @@ const Work = () => {
           <div className="xl:hidden">
             {/* Section intro */}
             <div className="mb-12">
-              <p 
-                ref={workTextRefDesktop}
-                className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl"
-              >
+              <p className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl">
                 Every project tells a story — of vision brought to life, of
                 brands finding their voice, and of design that works harder than
                 it looks. Here&apos;s a glimpse at what we&apos;ve built for those who
@@ -151,10 +109,7 @@ const Work = () => {
             <div className="flex items-start justify-between mb-6 lg:mb-8">
               {/* Section intro - left side */}
               <div className="flex-1 xl:max-w-3xl 2xl:max-w-5xl pr-8">
-                <p 
-                  ref={workTextRefXL}
-                  className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight"
-                >
+                <p className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight">
                   Every project tells a story — of vision brought to life, of
                   brands finding their voice, and of design that works harder
                   than it looks. Here&apos;s a glimpse at what we&apos;ve built for those

@@ -1,17 +1,13 @@
-"use client"
-import { useBenefitDropdown } from "@/hooks/useBenefitDropdown";
-import Image from "next/image";
+"use client";
 
-interface IconProps {
-  className?: string;
-  filled?: boolean;
-}
+import Image from "next/image";
+import { useBenefitDropdown } from "@/hooks/useBenefitDropdown";
 
 interface BenefitItemProps {
   item: {
     title: string;
     content: string;
-    icon: React.ComponentType<IconProps>;
+    icon: React.ComponentType<{ className?: string; filled?: boolean }>;
     image: string;
   };
   index: number;
@@ -19,54 +15,61 @@ interface BenefitItemProps {
   onToggle: () => void;
 }
 
-export const BenefitItem: React.FC<BenefitItemProps> = ({ item, isExpanded, onToggle }) => {
-  const { contentRef, imageRef, containerRef, shouldRender } = useBenefitDropdown(isExpanded);
+export const BenefitItem = ({
+  item,
+  index,
+  isExpanded,
+  onToggle,
+}: BenefitItemProps) => {
+  const Icon = item.icon;
+  const { contentRef, imageRef, containerRef, shouldRender } =
+    useBenefitDropdown(isExpanded);
 
   return (
-    <div ref={containerRef} className="border-b border-primary-dark pb-6">
-      <div className="flex items-start justify-between gap-8">
-        <div className="flex-1">
-          <button
-            onClick={onToggle}
-            className="w-full flex items-center text-left group mb-4 hover:opacity-80 transition-opacity duration-200 hover:cursor-pointer"
-          >
-            <item.icon 
-                filled={isExpanded}
-              className="w-6 h-7 text-primary-dark shrink-0 mr-4 transition-all duration-200 group-hover:scale-110"
-            />
-            <h3 className="text-section-heading-small font-noto-serif font-semibold text-primary-dark">
-              {item.title}
-            </h3>
-          </button>
-
-          {shouldRender && (
-            <div ref={contentRef} className="overflow-hidden">
-              <div className="pl-10 overflow-hidden">
-                <p className="text-body-lg font-aileron font-semibold text-primary-dark leading-relaxed tracking-tight max-w-2xl overflow-hidden">
-                  {item.content}
-                </p>
-              </div>
-            </div>
-          )}
+    <div ref={containerRef} className="w-full">
+      {/* Header with icon, title and toggle */}
+      <button
+        className="w-full text-left flex justify-between items-start cursor-pointer group py-4" // Tighter bottom padding
+        onClick={onToggle}
+      >
+        <div className="flex items-center gap-4 flex-1">
+          <Icon className="w-6 h-6 text-accent-primary flex-shrink-0" filled={isExpanded} />
+          <h3 className="text-section-heading-small font-noto-serif font-semibold text-primary-dark group-hover:text-accent-primary transition-colors duration-200">
+            {item.title}
+          </h3>
         </div>
+      </button>
 
-        {/* Image for expanded item with GSAP clip-path animation */}
-        {shouldRender && (
-          <div 
-            ref={imageRef}
-            className="hidden md:block h-60 w-50 relative rounded-lg shrink-0 overflow-hidden"
-            style={{ clipPath: "inset(50% 50% 50% 50%)" }}
-          >
-            <Image
-              src={item.image}
-              fill
-              alt={`${item.title} showcase`}
-              className="object-cover"
-              
-            />
+      {/* Expandable content */}
+      {shouldRender && (
+        <div ref={contentRef} className="overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 pb-0">
+            {/* Left column - Text content */}
+            <div>
+              <p className="ml-10 text-body-lg font-aileron text-primary-dark leading-relaxed tracking-tight max-w-2xl font-semibold">
+                {item.content}
+              </p>
+            </div>
+
+            {/* Right column - Image */}
+            <div
+              ref={imageRef}
+              className="hidden lg:flex justify-center lg:justify-end self-start"
+            >
+              <Image
+                src={item.image}
+                alt={item.title}
+                width={250}
+                height={300}
+                className="h-64 md:h-72 object-cover"
+              />
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Separator line */}
+      <div className="w-full h-[1px] bg-primary-dark mt-6"></div>
     </div>
   );
 };

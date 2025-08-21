@@ -1,3 +1,4 @@
+// File removed - replaced with CSS animations
 "use client";
 
 import { useRef, useState, useEffect } from "react";

@@ -20,20 +20,6 @@ const Services = () => {
   const section2Ref = useRef<HTMLDivElement>(null);
   const section3Ref = useRef<HTMLDivElement>(null);
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   // Memoize expensive calculations
   const maskConfig = useMemo(() => {
     if (typeof window === "undefined") return null;
@@ -134,7 +120,7 @@ const Services = () => {
 
         ScrollTrigger.create({
           trigger: maskContainerRef.current,
-          start: "top 70%",
+          start: "top 80%",
           end: "bottom bottom",
           scrub: true,
           invalidateOnRefresh: true, // Automatically recalculate on resize

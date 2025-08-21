@@ -97,7 +97,7 @@ const Method = () => {
       buttonHoverText: "#FFFDE4",
       buttonHref: "#book-call",
       image: null,
-      backgroundImage: "/launch-support-bg.webp", // You can replace this with your actual image path
+      backgroundImage: "/launch-support-bg.webp", // Lazy loaded
     },
   ];
 
@@ -192,7 +192,7 @@ const Method = () => {
               key={index}
               className={`${
                 step.backgroundImage
-                  ? "bg-cover bg-center bg-no-repeat"
+                  ? ""
                   : step.bgColor
               } ${step.textColor} ${
                 index === 0
@@ -206,14 +206,21 @@ const Method = () => {
               style={{
                 zIndex: methodSteps.length - index,
                 marginLeft: index > 0 ? "-20px" : "0",
-                ...(step.backgroundImage
-                  ? {
-                      backgroundImage: `url(${step.backgroundImage})`,
-                    }
-                  : {}),
               }}
               onMouseEnter={() => setHoveredCard(index)}
             >
+              {/* Lazy loaded background image */}
+              {step.backgroundImage && (
+                <Image
+                  src={step.backgroundImage}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  
+                  sizes="(max-width: 1024px) 0px, 50vw"
+                />
+              )}
+              
               {/* Background overlay for better text readability when using background image */}
               {step.backgroundImage && (
                 <div className="absolute inset-0 bg-black/40"></div>

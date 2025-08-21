@@ -7,15 +7,18 @@ import Star from "../icons/star";
 const FooterContent = () => {
   return (
     <div className="h-full w-full bg-primary-light relative overflow-hidden flex flex-col">
-      {/* Light overlay to match the beige tone in the design */}
+      {/* Background grid - lazy loaded */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/bg-grid.png"
-          alt="Background grid"
+          src="/bg-grid.webp"
+          alt=""
           fill
           className="object-cover opacity-80"
+        
+          sizes="100vw"
         />
       </div>
+      
       <div className="absolute inset-0 flex items-center justify-center scale-110">
         <div className="relative flex items-center justify-center z-20">
           <Image
@@ -24,16 +27,19 @@ const FooterContent = () => {
             width={400}
             height={400}
             className="object-contain w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[380px] md:h-[380px] lg:w-[400px] lg:h-[400px]"
-            priority
+           
+            sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 380px, 400px"
           />
 
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="w-32 h-40 sm:w-36 sm:h-44 md:w-48 md:h-60 lg:w-54 lg:h-68 relative">
               <Image
-                src="/footer.png"
+                src="/footer.webp"
                 alt="Creative showcase"
                 fill
                 className="object-cover rounded-lg"
+                
+                sizes="(max-width: 640px) 128px, (max-width: 768px) 144px, (max-width: 1024px) 192px, 216px"
               />
             </div>
           </div>
@@ -49,18 +55,28 @@ const FooterContent = () => {
               Contact
             </h3>
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5">
-              <span className="text-body-sm sm:text-body font-aileron text-primary-dark">
+              <a 
+                href="mailto:dyodigitals@gmail.com"
+                className="text-body-sm sm:text-body font-aileron text-primary-dark hover:text-accent-primary transition-colors duration-300"
+              >
                 dyodigitals@gmail.com
-              </span>
+              </a>
               <span className="text-primary-dark hidden sm:block">|</span>
               <div className="flex items-center justify-start sm:justify-center">
-                <Image
-                  src="/insta-icon.svg"
-                  alt="Instagram"
-                  width={20}
-                  height={20}
-                  className="sm:w-6 sm:h-6"
-                />
+                <a 
+                  href="https://www.instagram.com/dyo.digitals/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-70 transition-opacity duration-300"
+                >
+                  <Image
+                    src="/insta-icon.svg"
+                    alt="Instagram"
+                    width={20}
+                    height={20}
+                    className="sm:w-6 sm:h-6"
+                  />
+                </a>
               </div>
             </div>
           </div>

@@ -1,19 +1,24 @@
-import Benefits from "@/components/landing-page/benefits";
-import BookCall from "@/components/landing-page/book-call";
-import FAQ from "@/components/landing-page/faq";
+"use client";
 import Hero from "@/components/landing-page/hero";
 import Marquee from "@/components/landing-page/marquee";
-import Method from "@/components/landing-page/method";
-import Pricing from "@/components/landing-page/pricing";
-import Services from "@/components/landing-page/services";
-import Testimonials from "@/components/landing-page/testimonials";
-import Work from "@/components/landing-page/work";
-import Footer from "@/components/shared/footer";
+import dynamic from "next/dynamic";
 
+// Dynamic imports for heavy components
+const Benefits = dynamic(() => import("@/components/landing-page/benefits"));
+const Work = dynamic(() => import("@/components/landing-page/work"));
+const Services = dynamic(() => import("@/components/landing-page/services"), {
+  loading: () => <div className="h-[300vh] bg-secondary-dark animate-pulse" />
+});
+const Testimonials = dynamic(() => import("@/components/landing-page/testimonials"));
+const Method = dynamic(() => import("@/components/landing-page/method"));
+const Pricing = dynamic(() => import("@/components/landing-page/pricing"));
+const FAQ = dynamic(() => import("@/components/landing-page/faq"));
+const BookCall = dynamic(() => import("@/components/landing-page/book-call"), {
+  ssr: false,
+});
+const Footer = dynamic(() => import("@/components/shared/footer"));
 
 export default function Home() {
-  
- 
   return (
    <>
    <Hero />
@@ -26,7 +31,6 @@ export default function Home() {
    <Pricing/>
    <FAQ/>
    <BookCall/>
-      
    <Footer/>
    </>
   );

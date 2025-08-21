@@ -12,7 +12,7 @@ const Pricing = () => {
 
   const pricingData = {
     design: {
-      title: "Design",
+      title: "Branding",
       description: "Perfect for new businesses or those ready to refresh their visual identity.",
       features: [
         "Brand strategy session (1-2 hours)",
@@ -28,24 +28,24 @@ const Pricing = () => {
       title: "Web Design",
       description: "Complete web design solution for businesses ready to make an impact online.",
       features: [
-        "Custom website design (up to 5 pages)",
-        "Mobile-responsive layouts",
+        "Custom Figma website design",
+        "Pixel-perfect layouts built around your brand",
+        "Hand-coded development (no templates)",
+        "Mobile-responsive and adaptive design",
         "User experience optimization",
-        "Basic SEO setup",
-        "Content management system integration"
+        "Seamless integration with CMS if needed"
       ],
       price: "Starting from $ 2499 USD",
       icon: <ShinyStar className="text-primary-dark scale-80 " />
     },
     "branding-web": {
       title: "Branding + Web Design",
-      description: "Complete brand identity and web presence package for businesses starting from scratch.",
+      description: "Complete brand identity and web presence package for businesses that want to stand out.",
       features: [
         "Complete brand identity package",
-        "Custom website design & development",
+        "Custom Figma website design & hand-coded development",
         "Logo design + brand guidelines",
-        "Social media templates",
-        "Business card & stationary design",
+        "Social media templates (optional add-on)",
         "3 months of support included"
       ],
       price: "Starting from $ 2999 USD",

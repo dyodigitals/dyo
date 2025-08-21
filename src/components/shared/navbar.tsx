@@ -7,11 +7,11 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#work", label: "work" },
-    { href: "#pricing", label: "pricing" },
-    { href: "#faq", label: "faq" },
-    { href: "#method", label: "process" },
-    { href: "#book-call", label: "contact" },
+    { href: "#work", label: "Work" },
+    { href: "#pricing", label: "Pricing" },
+    { href: "#faq", label: "FAQ" },
+    { href: "#method", label: "Process" },
+    { href: "#book-call", label: "Contact" },
   ];
 
   return (

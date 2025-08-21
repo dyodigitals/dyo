@@ -1,35 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import ChapterBanner from "../shared/chapter-banner";
 import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
-import { useSplitTextMask } from "@/hooks/useSplitTextMask";
 
 const Testimonials = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const { textRef: testimonialsTextRef } = useSplitTextMask({
-    start: () => `top ${window.innerHeight * 0.9}px`,
-    stagger: 0.01,
-    duration: 0.6,
-    splitType: "words",
-    maskType: "words",
-    direction: "up",
-    ease: "power3.out"
-  });
-
   const testimonials = [
     {
       quote:
@@ -60,7 +34,7 @@ const Testimonials = () => {
     
     {
       quote:
-        "Wow where do I start? The website they’ve made for me is just perfect. They got the exact vibe that I was going for and it just feels so me. They even made me a logo without me asking for it - and I loved it! Also working with them was so easy, I was super busy but they managed to navigate around that and they basically did everything for me after I told them what vibe I wanted.",
+        "Wow where do I start? The website they've made for me is just perfect. They got the exact vibe that I was going for and it just feels so me. They even made me a logo without me asking for it - and I loved it! Also working with them was so easy, I was super busy but they managed to navigate around that and they basically did everything for me after I told them what vibe I wanted.",
       name: "Victoria Rezny",
       title: "Owner, PiksByVik",
       services: ["PiksByVik", "Branding", "Website Design"],
@@ -78,7 +52,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="w-full bg-primary-light relative">
+    <section className="w-full relative">
       <ChapterBanner
         chapterNumber="Chapter 5"
         chapterTitle="KIND WORDS"
@@ -86,20 +60,17 @@ const Testimonials = () => {
       />
 
       <div className="relative z-10 py-12 md:py-16">
-        <div className="absolute inset-0 opacity-30 -z-10">
+        <div className="absolute inset-0 opacity-90 -z-10">
           <Image
-            src="/bg-grid.png"
+            src="/bg-grid.webp"
             alt="Background Grid"
             fill
-            className="object-cover"
+            className="object-contain repeat"
           />
         </div>
         {/* Section intro */}
         <div className="px-4 md:px-[2.5vw] mb-12 z-10">
-          <p 
-            ref={isMobile ? undefined : testimonialsTextRef}
-            className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl"
-          >
+          <p className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl">
             Don&apos;t just take our word for it — hear what our clients have to say
             about working with us and the results we&apos;ve delivered together.
           </p>

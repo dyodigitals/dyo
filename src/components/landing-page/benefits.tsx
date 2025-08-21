@@ -7,7 +7,6 @@ import Star from "../icons/star";
 import ChapterBanner from "../shared/chapter-banner";
 import { BenefitItem } from "../ui/benefit-item";
 import Button from "../ui/button";
-import { useSplitTextMask } from "@/hooks/useSplitTextMask";
 
 const Benefits = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(0);
@@ -25,17 +24,6 @@ const Benefits = () => {
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  // Split text animation matching Framer Motion example
-  const { textRef: headerTextRef } = useSplitTextMask({
-    start: () => `top ${window.innerHeight * 0.9}px`,
-    stagger: 0.01, // Exact match to reference (delay: 0.01 * i)
-    duration: 0.6, // Match Framer Motion duration
-    splitType: "words",
-    maskType: "words",
-    direction: "up",
-    ease: "power3.out"
-  });
 
   useEffect(() => {
     const updateScallop = () => {
@@ -65,14 +53,14 @@ const Benefits = () => {
       content:
         "Template sites don't convert - you blend into the noise with thousands of others. We make everything from scratch down to the very last detail and make sure your site leaves a lasting impression; because your work deserves to feel exactly like you.",
       icon: Star,
-      image: "/benefit-1.png",
+      image: "/benefit-1.webp",
     },
     {
       title: "Struggling to make something that feels exactly like you?",
       content:
         "We know it’s hard to capture and convey the mood, tone, and personality behind your work. That’s why we do it for you - you just tell us what your aesthetic is and we’ll handle the rest. ",
       icon: Star,
-      image: "/benefit-2-v-2.png", // Replace with actual image
+      image: "/benefit-2-v-2.webp", // Replace with actual image
     },
     {
       title: "Your growth and why a brand matters",
@@ -117,10 +105,7 @@ const Benefits = () => {
               your brand and website show it?
             </h3>
 
-            <p 
-              ref={isMobile ? undefined : headerTextRef}
-              className="text-body-lg font-aileron text-secondary-light mb-6 max-w-2xl leading-relaxed tracking-tight"
-            >
+            <p className="text-body-lg font-aileron text-secondary-light mb-6 max-w-2xl leading-relaxed tracking-tight">
               We help you turn your vision into a distinctive digital identity —
               one that reflects your personality, amplifies your brand, and
               works as hard as you do to attract the right people.
