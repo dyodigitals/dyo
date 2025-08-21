@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Noto_Serif_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const notoSerifDisplay = Noto_Serif_Display({
   subsets: ["latin"],
@@ -174,7 +176,11 @@ export default function RootLayout({
         className={`${aileron.variable} ${notoSerifDisplay.variable} antialiased`}
       >
         <LenisProvider>
-          <main className="max-w-[1920px] mx-auto">{children}</main>
+          <main className="max-w-[1920px] mx-auto">
+            {children}
+             <SpeedInsights />
+             <Analytics />
+            </main>
         </LenisProvider>
       </body>
     </html>

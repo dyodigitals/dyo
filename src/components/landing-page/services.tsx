@@ -1,14 +1,14 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { useRef, useMemo, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ChapterBanner from "../shared/chapter-banner";
-import ServiceCard from "../ui/service-card";
-import ShinyStar from "../icons/flashy-star";
+import { useMemo, useRef } from "react";
 import BroadStar from "../icons/broad-star";
 import FanIcon from "../icons/fan-icon";
+import ShinyStar from "../icons/flashy-star";
+import ChapterBanner from "../shared/chapter-banner";
+import ServiceCard from "../ui/service-card";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
