@@ -120,7 +120,7 @@ const Services = () => {
 
         ScrollTrigger.create({
           trigger: maskContainerRef.current,
-          start: "top 80%",
+          start: "top-=280 top",
           end: "bottom bottom",
           scrub: true,
           invalidateOnRefresh: true, // Automatically recalculate on resize

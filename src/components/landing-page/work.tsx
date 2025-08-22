@@ -16,7 +16,7 @@ const Work = () => {
     },
     {
       date: "02/03",
-      title: "Upcreatrorz",
+      title: "Upcreatorz",
       category: "Agency site",
       image: "/work-upcreatorz-2.webp",
       description: "India's First Luxury Branding House...",

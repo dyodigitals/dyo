@@ -12,7 +12,7 @@ export default function Calendar() {
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({"namespace":"30min"});
-      cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#FFFDE4"},"dark":{"cal-brand":"#FFFDE4"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      cal("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#292929"},"dark":{"cal-brand":"#fffde4"}},"hideEventTypeDetails":false,"layout":"month_view"});
     })();
   }, [])
   return <Cal namespace="30min"
