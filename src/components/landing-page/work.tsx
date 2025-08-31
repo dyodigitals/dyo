@@ -1,5 +1,3 @@
-"use client";
-
 import ChapterBanner from "../shared/chapter-banner";
 import Button from "../ui/button";
 import WorkCard from "../ui/work-card";
@@ -164,9 +162,8 @@ const Work = () => {
         {/* Get Added button */}
         <div className="mt-12 xl:mt-54">
           <Button
-            hoverBackgroundColor="#fffde4"
-            textColor="#fffde4"
-            hoverTextColor="#292929"
+            textColor="#FFFDE4"
+            hoverTextColor="#FFFDE4"
             borderColor="#888888"
             className="font-aileron font-semibold text-body py-4 bg-accent-primary"
             showArrow={true}

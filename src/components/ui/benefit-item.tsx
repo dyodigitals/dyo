@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { useBenefitDropdown } from "@/hooks/useBenefitDropdown";
 
 interface BenefitItemProps {
@@ -29,11 +30,16 @@ export const BenefitItem = ({
     <div ref={containerRef} className="w-full">
       {/* Header with icon, title and toggle */}
       <button
-        className="w-full text-left flex justify-between items-start cursor-pointer group py-4" // Tighter bottom padding
+        className="w-full text-left flex justify-between items-start cursor-pointer group py-4"
         onClick={onToggle}
       >
         <div className="flex items-center gap-4 flex-1">
-          <Icon className="w-6 h-6 text-accent-primary flex-shrink-0" filled={isExpanded} />
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <Icon className="w-6 h-6 text-accent-primary flex-shrink-0" filled={isExpanded} />
+          </motion.div>
           <h3 className="text-section-heading-small font-noto-serif font-semibold text-primary-dark group-hover:text-accent-primary transition-colors duration-200">
             {item.title}
           </h3>

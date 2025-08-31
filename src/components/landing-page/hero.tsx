@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Navbar from "../shared/navbar";
 import ChapterBanner from "../shared/chapter-banner";
@@ -65,9 +64,8 @@ const Hero = () => {
           </p>
 
           <Button
-            hoverBackgroundColor="#4B2840"
             textColor="#292929"
-            hoverTextColor="#FFFDE4"
+            hoverTextColor="#292929"
             borderColor="#888888"
             className="font-aileron font-semibold text-body"
             showArrow={true}
@@ -141,10 +139,8 @@ const Hero = () => {
 
           <div className="flex justify-center">
             <Button
-              backgroundColor="#4B2840"
-              hoverBackgroundColor="#4B2840"
               textColor="#292929"
-              hoverTextColor="#FFFDE4"
+              hoverTextColor="#292929"
               borderColor="#888888"
               className="font-aileron font-semibold text-body"
               showArrow={true}

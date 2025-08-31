@@ -1,9 +1,7 @@
 "use client";
-
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-
+import Image from "next/image";
 // Dynamic import the actual Cal component - this is where the heavy Cal.com code is
 const Cal = dynamic(() => import("../calendar/cal"), {
   ssr: false,

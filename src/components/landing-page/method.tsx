@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import ChapterBanner from "../shared/chapter-banner";
 import Image from "next/image";
@@ -26,10 +25,8 @@ const Method = () => {
       bgColor: "bg-accent-primary",
       textColor: "text-primary-light",
       numberColor: "text-primary-light",
-      buttonBg: "#4b2840",
       buttonTextColor: "#FFFDE4",
-      buttonHoverBg: "#fffde4",
-      buttonHoverText: "#292929",
+      buttonHoverText: "#FFFDE4",
       buttonHref: "#book-call",
       image: null,
       backgroundImage: null,
@@ -51,10 +48,8 @@ const Method = () => {
       bgColor: "bg-primary-dark",
       textColor: "text-primary-light",
       numberColor: "text-primary-light",
-      buttonBg: "#FFFDE4",
       buttonTextColor: "#fffde4",
-      buttonHoverBg: "#fffde4",
-      buttonHoverText: "#292929",
+      buttonHoverText: "#fffde4",
       buttonHref: "#work",
       image: null,
       backgroundImage: null,
@@ -71,10 +66,8 @@ const Method = () => {
       bgColor: "bg-secondary-light",
       textColor: "text-primary-dark",
       numberColor: "text-primary-dark",
-      buttonBg: "",
       buttonTextColor: "#292929",
-      buttonHoverBg: "#4b2840",
-      buttonHoverText: "#fffde4",
+      buttonHoverText: "#292929",
       buttonHref: "#faq",
       image: null,
       backgroundImage: null,
@@ -91,9 +84,7 @@ const Method = () => {
       bgColor: "bg-secondary-dark",
       textColor: "text-primary-light",
       numberColor: "text-primary-light",
-      buttonBg: "bg-primary-light",
-      buttonTextColor: "#262523",
-      buttonHoverBg: "#262523",
+      buttonTextColor: "#FFFDE4",
       buttonHoverText: "#FFFDE4",
       buttonHref: "#book-call",
       image: null,
@@ -170,11 +161,10 @@ const Method = () => {
                 )}
 
                 <Button
-                  hoverBackgroundColor={step.buttonHoverBg}
                   textColor={step.buttonTextColor}
                   hoverTextColor={step.buttonHoverText}
                   borderColor="#888888"
-                  className={`font-aileron font-semibold text-sm ${step.buttonBg}`}
+                  className={`font-aileron font-semibold text-sm`}
                   showArrow={false}
                   href={`${step.buttonHref}`}
                 >
@@ -319,11 +309,10 @@ const Method = () => {
                   {/* Bottom section with button and number aligned */}
                   <div className="flex-shrink-0 flex items-end justify-between">
                     <Button
-                      hoverBackgroundColor={step.buttonHoverBg}
                       textColor={step.buttonTextColor}
                       hoverTextColor={step.buttonHoverText}
                       borderColor="#888888"
-                      className={`font-aileron font-semibold px-8 py-3 ${step.buttonBg}`}
+                      className={`font-aileron font-semibold px-8 py-3`}
                       showArrow={true}
                       href={`${step.buttonHref}`}
                     >

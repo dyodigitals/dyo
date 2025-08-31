@@ -1,37 +1,67 @@
-"use client";
+import dynamic from "next/dynamic";
 import Hero from "@/components/landing-page/hero";
 import Marquee from "@/components/landing-page/marquee";
-import dynamic from "next/dynamic";
 
-// Dynamic imports for heavy components
-const Benefits = dynamic(() => import("@/components/landing-page/benefits"));
-const Work = dynamic(() => import("@/components/landing-page/work"));
+// Lazy load everything after Marquee
+const Benefits = dynamic(() => import("@/components/landing-page/benefits"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
+
+const Work = dynamic(() => import("@/components/landing-page/work"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
+
 const Services = dynamic(() => import("@/components/landing-page/services"), {
-  loading: () => <div className="h-[300vh] bg-secondary-dark animate-pulse" />
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
 });
-const Testimonials = dynamic(() => import("@/components/landing-page/testimonials"));
-const Method = dynamic(() => import("@/components/landing-page/method"));
-const Pricing = dynamic(() => import("@/components/landing-page/pricing"));
-const FAQ = dynamic(() => import("@/components/landing-page/faq"));
+
+const Testimonials = dynamic(() => import("@/components/landing-page/testimonials"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
+
+const Method = dynamic(() => import("@/components/landing-page/method"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
+
+const Pricing = dynamic(() => import("@/components/landing-page/pricing"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
+
+const FAQ = dynamic(() => import("@/components/landing-page/faq"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
+
 const BookCall = dynamic(() => import("@/components/landing-page/book-call"), {
-  ssr: false,
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
 });
-const Footer = dynamic(() => import("@/components/shared/footer"));
+
+const Footer = dynamic(() => import("@/components/shared/footer"), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px] flex items-center justify-center">Loading...</div>,
+});
 
 export default function Home() {
   return (
-   <>
-   <Hero />
-   <Marquee/>
-   <Benefits/>
-   <Work/>
-   <Services/>
-   <Testimonials/>
-   <Method/>
-   <Pricing/>
-   <FAQ/>
-   <BookCall/>
-   <Footer/>
-   </>
+    <>
+      <Hero />
+      <Marquee />
+      <Benefits />
+      <Work />
+      <Services />
+      <Testimonials />
+      <Method />
+      <Pricing />
+      <FAQ />
+      <BookCall />
+      <Footer />
+    </>
   );
 }

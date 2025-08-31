@@ -1,14 +1,9 @@
 "use client";
-
 import React from 'react';
 import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, useAnimate } from 'motion/react';
 import { cn } from '@/lib/utils';
 import ButtonArrow from '../icons/button-arrow';
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -37,48 +32,53 @@ export default function Button({
   showArrow = false,
   ...attributes
 }: ButtonProps) {
-  const circle = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const timeline = useRef<gsap.core.Timeline | null>(null);
+  const originalTextRef = useRef<HTMLDivElement>(null);
+  const duplicateTextRef = useRef<HTMLDivElement>(null);
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
-
-  // Use provided hover background color or default to the main background color
-  const finalHoverBgColor = hoverBackgroundColor || backgroundColor;
-
-  useGSAP(() => {
-    timeline.current = gsap.timeline({paused: true});
-    timeline.current
-      .to(circle.current, {top: "-25%", width: "150%", duration: 0.4, ease: "power3.in"}, "enter")
-      .to(circle.current, {top: "-150%", width: "125%", duration: 0.25}, "exit");
-  }, []);
+  const [scope, animate] = useAnimate();
   
   const manageMouseEnter = () => {
     if(timeoutId.current) clearTimeout(timeoutId.current);
-    timeline.current?.tweenFromTo('enter', 'exit');
     
-    // Animate text color change
-    if (textRef.current) {
-      gsap.to(textRef.current, {
-        color: hoverTextColor,
+    // Animate text slide up effect only
+    if (originalTextRef.current && duplicateTextRef.current) {
+      // Slide original text up and out
+      animate(originalTextRef.current, {
+        y: "-100%",
+      }, {
         duration: 0.3,
-        ease: "power2.out"
+        ease: [0.25, 0.46, 0.45, 0.94],
+      });
+      
+      // Slide duplicate text up from bottom
+      animate(duplicateTextRef.current, {
+        y: "0%",
+      }, {
+        duration: 0.3,
+        ease: [0.25, 0.46, 0.45, 0.94],
       });
     }
   };
 
   const manageMouseLeave = () => {
-    timeoutId.current = setTimeout(() => {
-      timeline.current?.play();
+    // Remove timeout - animate immediately
+    if (originalTextRef.current && duplicateTextRef.current) {
+      // Slide original text back down
+      animate(originalTextRef.current, {
+        y: "0%",
+      }, {
+        duration: 0.3,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      });
       
-      // Animate text color back
-      if (textRef.current) {
-        gsap.to(textRef.current, {
-          color: textColor,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      }
-    }, 300);
+      // Slide duplicate text back down below
+      animate(duplicateTextRef.current, {
+        y: "100%",
+      }, {
+        duration: 0.3,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      });
+    }
   };
 
   const handleClick = (e: React.MouseEvent) => {
@@ -108,7 +108,8 @@ export default function Button({
   }, []);
 
   const buttonContent = (
-    <div 
+    <motion.div
+      ref={scope}
       className={cn(
         "relative overflow-hidden cursor-pointer",
         "rounded-[3em] border",
@@ -123,29 +124,39 @@ export default function Button({
       onMouseEnter={manageMouseEnter} 
       onMouseLeave={manageMouseLeave}
       onClick={handleClick}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.1 }}
       {...attributes}
     >
-      <div 
-        ref={textRef}
-        className="relative z-10 flex items-center gap-3"
-        style={{
-          color: textColor
-        }}
-      >
-        {children}
-        {showArrow && (
-          <ButtonArrow className="w-3 h-3" />
-        )}
+      <div className="relative z-10 flex items-center gap-3 overflow-hidden">
+        {/* Original text */}
+        <div 
+          ref={originalTextRef}
+          className="flex items-center gap-3"
+          style={{ color: textColor }}
+        >
+          {children}
+          {showArrow && (
+            <ButtonArrow className="w-3 h-3" />
+          )}
+        </div>
+        
+        {/* Duplicate text for slide effect */}
+        <div 
+          ref={duplicateTextRef}
+          className="absolute inset-0 flex items-center gap-3"
+          style={{ 
+            transform: 'translateY(100%)',
+            color: hoverTextColor
+          }}
+        >
+          {children}
+          {showArrow && (
+            <ButtonArrow className="w-3 h-3" />
+          )}
+        </div>
       </div>
-      <div 
-        ref={circle} 
-        style={{backgroundColor: finalHoverBgColor}} 
-        className={cn(
-          "absolute w-full h-[150%]",
-          "rounded-[50%] top-full"
-        )}
-      />
-    </div>
+    </motion.div>
   );
 
   // If href is provided, wrap in anchor tag for accessibility

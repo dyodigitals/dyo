@@ -1,50 +1,32 @@
 "use client";
 
 import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, useInView, useMotionValue, useAnimationFrame } from "motion/react";
 import Star from "@/components/icons/star";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Marquee() {
   const containerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  
+  // Track if marquee is in view with Motion's useInView
+  const isInView = useInView(containerRef, { 
+    once: false, // Allow retriggering when scrolling back
+    margin: "0px 0px 0px 0px" // Trigger when fully in viewport
+  });
 
-  useGSAP(() => {
-    const marquee = marqueeRef.current;
-    if (!marquee) return;
-
-    // Get the width of one complete set
-    const marqueeWidth = marquee.scrollWidth / 2;
-
-    // Create the animation but don't start it yet
-    const marqueeAnimation = gsap.to(marquee, {
-      x: -marqueeWidth,
-      duration: 30,
-      ease: "none",
-      repeat: -1,
-      paused: true, // Start paused
-    });
-
-    // Use ScrollTrigger to control when animation plays
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top bottom", // Start when top of marquee hits bottom of viewport
-      end: "bottom top",   // End when bottom of marquee hits top of viewport
-      onEnter: () => marqueeAnimation.play(),
-      onLeave: () => marqueeAnimation.pause(),
-      onEnterBack: () => marqueeAnimation.play(),
-      onLeaveBack: () => marqueeAnimation.pause(),
-    });
-
-    // Cleanup function
-    return () => {
-      marqueeAnimation.kill();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, { scope: containerRef });
+  // Create a motion value for the x position
+  const x = useMotionValue(0);
+  
+  // Use animation frame to create continuous movement when in view
+  useAnimationFrame((time) => {
+    if (!marqueeRef.current || !isInView) return;
+    
+    const marqueeWidth = marqueeRef.current.scrollWidth / 2;
+    // Create continuous movement - 30 second duration like GSAP
+    const speed = marqueeWidth / 30000; // pixels per millisecond
+    const newX = (time * -speed) % marqueeWidth;
+    x.set(newX);
+  });
 
   // Text items to display
   const items = [
@@ -69,15 +51,16 @@ export default function Marquee() {
       ref={containerRef}
       className="w-full overflow-hidden bg-primary-dark py-3"
     >
-      <div 
+      <motion.div 
         ref={marqueeRef}
         className="flex items-center whitespace-nowrap"
+        style={{ x }}
       >
         {/* First set */}
         {marqueeContent}
         {/* Duplicate set for seamless loop */}
         {marqueeContent}
-      </div>
+      </motion.div>
     </div>
   );
 }

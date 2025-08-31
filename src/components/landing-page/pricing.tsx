@@ -6,6 +6,7 @@ import FanIcon from "../icons/fan-icon";
 import ShinyStar from "../icons/flashy-star";
 import ChapterBanner from "../shared/chapter-banner";
 import PricingCard from "../ui/pricing-card";
+import Button from "../ui/button";
 
 const Pricing = () => {
   const [activeTab, setActiveTab] = useState<
@@ -117,18 +118,15 @@ const Pricing = () => {
             Not sure which package is right for you? Let&apos;s have a
             conversation about your specific needs and goals.
           </p>
-          <a
-            href="#book-call"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("book-call")?.scrollIntoView({
-                behavior: "smooth", // or "auto" for instant
-              });
-            }}
-            className="bg-accent-primary text-primary-light px-12 py-4 rounded-full font-noto-serif font-semibold text-body transition-all duration-300 hover:cursor-pointer hover:scale-102 hover:shadow-lg hover:shadow-secondary-dark/20 border border-secondary-dark hover:border-accent-primary"
-          >
-            Schedule a Free Consultation
-          </a>
+          <Button textColor="#fffde4"
+              hoverTextColor="#fffde4"
+              borderColor="#888888"
+              className="font-aileron font-semibold text-body bg-accent-primary px-8 py-4"
+              showArrow={true}
+              href="#book-call"
+            >
+              Schedule a Free Consultation
+            </Button>
         </div>
       </div>
     </section>

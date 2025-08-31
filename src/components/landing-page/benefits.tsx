@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ShinyStar from "../icons/flashy-star";
@@ -112,9 +111,8 @@ const Benefits = () => {
             </p>
 
             <Button
-              hoverBackgroundColor="#292929"
               textColor="#292929"
-              hoverTextColor="#FFFDE4"
+              hoverTextColor="#292929"
               borderColor="#888888"
               className="font-aileron font-semibold text-body bg-primary-light px-8 py-2"
               showArrow={false}

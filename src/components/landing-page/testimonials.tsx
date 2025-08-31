@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import ChapterBanner from "../shared/chapter-banner";
 import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
