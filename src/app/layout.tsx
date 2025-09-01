@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     default: "DYO Digitals - Custom Web Design & Branding for Creative Businesses",
     template: "%s | DYO Digitals"
   },
-  description: "We create stunning, custom-coded websites and brands that feel exactly like you. Specializing in web design for creatives. From $999 USD.",
+  description: "We create stunning, custom-coded websites and brands that feel exactly like you. Specializing in web design for creatives.",
   keywords: [
     "web design",
     "custom website design",
@@ -137,7 +137,7 @@ export default function RootLayout({
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         
         {/* Schema.org structured data */}

@@ -6,6 +6,7 @@ import Star from "../icons/star";
 import ChapterBanner from "../shared/chapter-banner";
 import { BenefitItem } from "../ui/benefit-item";
 import Button from "../ui/button";
+import { AnimatedText } from "../animations/anim";
 
 const Benefits = () => {
   const [expandedItem, setExpandedItem] = useState<number | null>(0);
@@ -17,11 +18,11 @@ const Benefits = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -99,16 +100,18 @@ const Benefits = () => {
         <div className="relative z-10 px-4 md:px-[2.5vw]">
           {/* Main content */}
           <div className="w-full">
+            
+
             <h3 className="text-section-heading font-noto-serif font-semibold text-primary-light mb-4 leading-tight font-stretch-extra-condensed">
               <span className="italic"> Your craft is unique — </span>but does
               your brand and website show it?
             </h3>
-
-            <p className="text-body-lg font-aileron text-secondary-light mb-6 max-w-2xl leading-relaxed tracking-tight">
-              We help you turn your vision into a distinctive digital identity —
+            <AnimatedText
+              text="We help you turn your vision into a distinctive digital identity —
               one that reflects your personality, amplifies your brand, and
-              works as hard as you do to attract the right people.
-            </p>
+              works as hard as you do to attract the right people."
+              className="text-body-lg font-aileron text-secondary-light mb-6 max-w-2xl leading-tight tracking-tight"
+            ></AnimatedText>
 
             <Button
               textColor="#292929"

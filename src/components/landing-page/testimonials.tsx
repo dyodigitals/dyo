@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ChapterBanner from "../shared/chapter-banner";
 import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
+import { AnimatedText } from "../animations/anim";
 
 const Testimonials = () => {
   const testimonials = [
@@ -69,10 +70,10 @@ const Testimonials = () => {
         </div>
         {/* Section intro */}
         <div className="px-4 md:px-[2.5vw] mb-12 z-10">
-          <p className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl">
-            Don&apos;t just take our word for it — hear what our clients have to say
-            about working with us and the results we&apos;ve delivered together.
-          </p>
+          <AnimatedText
+            text="Don't just take our word for it — hear what our clients have to say about working with us and the results we've delivered together."
+            className="text-section-heading-small font-noto-serif font-semibold text-primary-dark italic leading-tight max-w-4xl"
+          />
         </div>
 
         {/* Infinite moving cards */}

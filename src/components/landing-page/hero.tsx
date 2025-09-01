@@ -6,6 +6,9 @@ import Image from "next/image";
 import Button from "../ui/button";
 
 const Hero = () => {
+  const text = "Elevate your business with stunning, custom-coded websites that leave an impression. Designed with you in mind."
+  const headingfirstp = "We Create Brands"
+  const headingsecondp = "That Feel Like You"
   return (
     <section className="w-full bg-primary-light min-h-screen relative overflow-hidden">
       <Navbar />
@@ -25,8 +28,8 @@ const Hero = () => {
               alt=""
               width={460}
               height={460}
-              className="opacity-50 hero-dots object-contain"
-              priority
+              className="opacity-80 hero-dots object-contain"
+              priority={true}
             />
 
             <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-auto">
@@ -45,7 +48,7 @@ const Hero = () => {
                   width={240}
                   height={315}
                   className="hero-image-frame object-cover rounded-[6px]"
-                  priority
+                  priority = {true}
                 />
               </div>
             </div>
@@ -55,12 +58,11 @@ const Hero = () => {
         {/* Desktop content */}
         <div className=" z-20">
           <h1 className="text-hero font-noto-serif font-semibold text-primary-dark mb-8 leading-none font-stretch-extra-condensed">
-            We Create Brands
+            {headingfirstp}
           </h1>
 
           <p className="text-body-lg font-semibold font-aileron text-primary-dark mb-8 xl:max-w-[480px] lg:max-w-md max-w-sm leading-relaxed tracking-tight">
-            Elevate your business with stunning, custom-coded websites that
-            leave an impression. Designed with you in mind.
+            {text}
           </p>
 
           <Button
@@ -77,7 +79,7 @@ const Hero = () => {
 
         <div className="w-full flex justify-end z-20">
           <h2 className="text-hero-secondary font-noto-serif font-semibold text-primary-dark italic leading-none font-stretch-extra-condensed">
-            That Feel Like You
+            {headingsecondp}
           </h2>
         </div>
       </div>
@@ -87,10 +89,10 @@ const Hero = () => {
         {/* Combined mobile hero text */}
         <div className="text-center space-y-3">
           <h1 className="text-hero font-noto-serif font-semibold text-primary-dark leading-none font-stretch-extra-condensed">
-            We Create Brands
+            {headingfirstp}
           </h1>
           <h2 className="text-hero-secondary font-noto-serif font-semibold text-primary-dark italic leading-none font-stretch-extra-condensed">
-            That Feel Like You
+            {headingsecondp}
           </h2>
         </div>
 
@@ -98,7 +100,7 @@ const Hero = () => {
         <div className="flex justify-center items-center relative">
           <div className="relative flex items-center justify-center">
             <Image
-              src="/digital-dots.svg"
+              src="/digital-dots-mobile.webp"
               alt=""
               width={320}
               height={320}
@@ -133,8 +135,7 @@ const Hero = () => {
         {/* Mobile content */}
         <div className="text-center space-y-6 px-4">
           <p className="text-body-lg font-semibold font-aileron text-primary-dark leading-relaxed max-w-sm mx-auto tracking-tight">
-            Elevate your business with stunning, custom-coded websites that
-            leave an impression. Designed with you in mind.
+            {text}
           </p>
 
           <div className="flex justify-center">

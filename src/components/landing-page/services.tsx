@@ -1,49 +1,35 @@
 "use client";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef } from "react";
 import BroadStar from "../icons/broad-star";
 import FanIcon from "../icons/fan-icon";
 import ShinyStar from "../icons/flashy-star";
 import ChapterBanner from "../shared/chapter-banner";
 import ServiceCard from "../ui/service-card";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const Services = () => {
-  // Check if desktop on client-side only
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-  setIsMounted(true);
-  const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-
-  const handleResize = () => requestAnimationFrame(checkIsDesktop);
-  checkIsDesktop();
-
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
-
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   // Mask section refs
   const maskContainerRef = useRef<HTMLDivElement>(null);
   const maskStickyRef = useRef<HTMLDivElement>(null);
 
-  // Get scroll progress - only on desktop and after mount
-  const shouldUseScroll = isMounted && isDesktop;
+  // Get scroll progress - only on desktop
   const { scrollYProgress } = useScroll({
-    target: shouldUseScroll ? maskContainerRef : undefined,
+    target: isDesktop ? maskContainerRef : undefined,
     offset: ["-280px start", "end end"]
   });
 
-  // Memoize expensive calculations - only on desktop and after mount
+  // Memoize expensive calculations - only on desktop
   const maskConfig = useMemo(() => {
-    if (!isMounted || !isDesktop) return { maxSize: 0 };
+    if (!isDesktop) return { maxSize: 0 };
 
     const { innerWidth: width, innerHeight: height } = window;
     const maxSize = 1.25 * width + 1.25 * height;
 
     return { maxSize };
-  }, [isDesktop, isMounted]);
+  }, [isDesktop]);
 
   // Transform scroll progress to mask sizes for each section
   const section1MaskSize = useTransform(
@@ -130,7 +116,7 @@ const Services = () => {
         className="border-b border-primary-light"
       />
 
-      {isMounted && isDesktop ? (
+      {isDesktop ? (
         // Desktop Layout - Complex Animation
         <div 
           ref={maskContainerRef}
@@ -197,9 +183,7 @@ const Services = () => {
         <div className="py-16">
           {serviceData.map((service, index) => (
             <div key={index}>
-              <ServiceCard
-                {...service}
-              />
+              <ServiceCard {...service} />
             </div>
           ))}
         </div>
