@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/landing-page/hero";
 import Marquee from "@/components/landing-page/marquee";
+import About from "@/components/landing-page/about";
 
 // Lazy load everything after Marquee
 const Benefits = dynamic(() => import("@/components/landing-page/benefits"), {
@@ -59,6 +60,7 @@ export default function Home() {
       <Testimonials />
       <Method />
       <Pricing />
+      <About />
       <FAQ />
       <BookCall />
       <Footer />

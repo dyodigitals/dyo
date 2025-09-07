@@ -62,8 +62,8 @@ const FAQ = () => {
   return (
     <section id="faq" className="w-full bg-primary-light relative">
       <ChapterBanner
-        chapterNumber="Chapter 9"
-        chapterTitle="COMMON QUESTIONS"
+        chapterNumber="Chapter 10"
+        chapterTitle="FREQUENT QUESTIONS"
         className="border-b border-primary-dark"
       />
 
