@@ -33,7 +33,7 @@ const Work = () => {
       category: "Photographer site",
       image: "/work-victoria.webp",
       description: "Capturing Captivating & Genuine...",
-      href: "https://piksbyvik.vercel.app/",
+      href: "https://www.piksbyvikphotography.com",
     },
   ];
 
