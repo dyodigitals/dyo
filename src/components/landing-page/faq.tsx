@@ -11,22 +11,22 @@ const FAQ = () => {
     {
       question: "How long does it take to complete my project?",
       answer:
-        "Website usually takes around 4-6 weeks. Website + Branding can take 6-8 weeks.",
+        "Website can take up to 8 weeks. Website + Branding can take up to 10 weeks.",
     },
     {
       question: "Do you offer payment plans?",
       answer:
-        "Yes we do! We usually operate with payment milestones. There are 2 options: 50% upfront and 50% when the project is finished; or split the project into 4 phases and payments are completed upon each milestone.",
+        "Yes we do! We usually operate with payment milestones. There are 2 options: 50% upfront and 50% when the project is finished; or split the project into 3 phases and payments are completed upon each milestone.",
     },
     {
       question: "Will I be able to update my website myself?",
       answer:
-        "Yes, your website will be connected to a Content Management System (CMS) that you'll have access to, and make changes without needing any technical expertise. The system is very user friendly and we'll take you through how to use it.\n\nHowever, for more drastic changes (such as adding a new page), we'll be happy to help.",
+        "Yes, your website will be connected to a Content Management System (CMS) that you'll have access to, and make changes without needing any technical expertise. The system is very user friendly and we'll take you through how to use it.\n\nHowever, for more drastic changes (such as adding a new page), you'll have to contact us.",
     },
     {
       question: "Do you provide ongoing support & maintenance?",
       answer:
-        "Yes, when signing up with us there is a 6 month free maintenance period where we'll provide ongoing support. After that, maintenance is $25 a month - or $299 per year. This will include any small changes requested, but any drastic changes that take a lot of work may result in additional charges.",
+        "Yes, any small changes we'd be happy to help. However, any drastic work may result in additional charges.",
     },
     {
       question: "Who do you work with?",
@@ -34,24 +34,14 @@ const FAQ = () => {
         "We can work with any client that needs a website - we're very flexible. However, we focus mainly on creative niches, specializing in photography.",
     },
     {
-      question: "Will my website help me get more bookings?",
-      answer:
-        "Yes, we have a heavy focus on increasing conversion rates as well as creating a visually stunning website & brand that represents you.",
-    },
-    {
-      question: "What if I already have a logo/brand and just need a website?",
-      answer:
-        "Having your own brand is great! We suggest going with the single website package that starts at $2499.",
-    },
-    {
       question: "Do you optimise websites for mobile & other devices?",
       answer:
-        "Absolutely! A website that works on mobile is one of our top priorities - we ensure that your mobile version is easy to use & navigate, and works just as well as your PC version.",
+        "Absolutely! A website that works on all devices is one of our top priorities - we ensure that your mobile version looks just as good as your PC version. We also focus on responsiveness across all screen sizes, so that every user can have a smooth experience with your website.",
     },
     {
       question: "What do you use to build your websites?",
       answer:
-        "We build our websites with React and NextJS, hosted on Vercel - providing you with the highest quality in terms of web development. The website is coded by hand (no website builders), ensuring lightning fast speeds and no limitations.",
+        "We build our websites with either Webflow or Showit depending on your needs. Showit is great for creative websites and has great blogging capabilities; and Webflow offers very high flexibility and performance, being considered the best website builder.",
     },
   ];
 
